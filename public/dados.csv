@@ -1,0 +1,10 @@
+Data,Área,Número de Checks Esperados,Número de Check Executados,% de Execução,n de itens totais,n de itens executados,% itens
+Janeiro,Meio Ambiente,20,10,50%,100,95,95%
+Fevereiro,Meio Ambiente,20,15,75%,100,80,80%
+Março,Meio Ambiente,20,20,100%,100,70,70%
+Abril,Meio Ambiente,20,10,50%,100,100,100%
+Maio,Meio Ambiente,20,5,25%,100,56,56%
+Junho,Meio Ambiente,20,5,25%,100,86,86%
+Julho,Meio Ambiente,20,5,25%,100,29,29%
+Agosto,Meio Ambiente,20,5,25%,100,100,100%
+Setembro,Meio Ambiente,20,5,25%,100,44,44%

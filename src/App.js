@@ -1,10 +1,21 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./App.css";
-import { select, axisBottom, axisRight, scaleLinear, scaleBand } from "d3";
+import { select, axisBottom, axisRight, scaleLinear, scaleBand, csv } from "d3";
 
 function App() {
   const [data, setData] = useState([25, 30, 45, 60, 10, 65, 75]);
   const svgRef = useRef();
+
+  const [dataTeste, setDataTeste] = useState();
+  useEffect(() => {
+    csv('./dados.csv').then(dataAux => {
+        //console.log(dataAux);
+        setDataTeste(dataAux);
+    });
+    
+  },[]);
+
+  console.log(dataTeste);
 
   // will be called initially and on every data change
   useEffect(() => {
@@ -24,7 +35,7 @@ function App() {
       .clamp(true);
 
     const xAxis = axisBottom(xScale).ticks(data.length);
-
+    
     svg
       .select(".x-axis")
       .style("transform", "translateY(150px)")
