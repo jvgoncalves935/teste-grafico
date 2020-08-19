@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
-import "./App.css";
+import "./GroupedChart.css";
 import { select, axisBottom, axisRight, scaleLinear, scaleBand, csv } from "d3";
 
-function App() {
-  const [data, setData] = useState([25, 30, 45, 60, 10, 65, 75]);
+function GroupedChart() {
+  const [data, setData] = useState([25, 30, 45, 60, 10, 65, 75,100]);
   const svgRef = useRef();
 
   const [dataTeste, setDataTeste] = useState();
@@ -21,7 +21,7 @@ function App() {
     const svg = select(svgRef.current);
     const xScale = scaleBand()
       .domain(data.map((value, index) => index))
-      .range([-300, 300])
+      .range([0, 600])
       .padding(0.5);
 
     const yScale = scaleLinear()
@@ -30,20 +30,20 @@ function App() {
 
     const colorScale = scaleLinear()
       .domain([150, 200, 300])
-      .range(["green", "orange", "red"])
+      .range(["green", "yellow", "red"])
       .clamp(true);
 
     const xAxis = axisBottom(xScale).ticks(data.length);
     
     svg
       .select(".x-axis")
-      .style("transform", "translateY(150px)")
+      .style("transform", "translateY(300px)")
       .call(xAxis);
 
     const yAxis = axisRight(yScale);
     svg
       .select(".y-axis")
-      .style("transform", "translate(300px,-150px)")
+      .style("transform", "translate(600px,0px)")
       .call(yAxis);
 
     svg
@@ -54,7 +54,7 @@ function App() {
 
       .style("transform", "scale(1, -1)")
       .attr("x", (value, index) => xScale(index))
-      .attr("y", -150)
+      .attr("y", -300)
       .attr("width", xScale.bandwidth())
       .transition()
       .attr("fill", colorScale)
@@ -67,7 +67,7 @@ function App() {
         <g className="x-axis" />
         <g className="y-axis" />
       </svg>
-      <button onClick={() => setData(data.map(value => value + 10))}>
+      <button onClick={() => setData(data.map(value => value >= 300 ? value : value+10))}>
         Update data
       </button>
       <button onClick={() => setData(data.filter(value => value < 200))}>
@@ -77,4 +77,4 @@ function App() {
   );
 }
 
-export default App;
+export default GroupedChart;
